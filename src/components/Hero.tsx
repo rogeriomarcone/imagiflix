@@ -11,8 +11,8 @@ const Hero = ({ title = 'Avengrs Endgame', score = 10 }) => {
     }
 
     return (
-        <header className="relative min-h-screen">
-            <img className='object-cover object-center h-full w-full' src={placeholder} alt='Filme em destaque' />
+        <header className="relative box-border">
+            <img className='object-cover object-center h-auto w-full' src={placeholder} alt='Filme em destaque' />
 
             <article className='absolute bottom-0 mb-64 px-8'>
                 <p className='text-3xl'>Assista agora:</p>
