@@ -3,12 +3,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Movie } from "../interfaces/Movie";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import Poster from "./Poster";
 
-const Poster = ({ cover, title }: Movie, index: number) => (
-    <article key={index}>
-        <img src={cover} alt={title} />
-    </article>
-);
+
+
+//const Poster = ({ cover, title }: Movie, index: number) => (
+//    <article key={index}>
+//        <img src={cover} alt={title} />
+//    </article>
+//);
 
 interface Direction {
     directionType: 'left' | 'rigth';
@@ -36,10 +39,11 @@ const Carousel = ({ title, data }: CarouselProps) => {
     };
 
     return (
-        <section>
+        <section className="carousel">
             <h2 className="relative z-10 font-bold text-2xl ml-8 mb-4">{title}</h2>
+            
             <Slider className="relative mb-8" {...settings}>
-                {data?.map((movie, index) => Poster(movie, index))}
+                {data?.map((movie, index) => <Poster title={movie.title} cover={movie.cover} key={index}/>)}
             </Slider>
         </section>
     )
