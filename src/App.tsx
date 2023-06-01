@@ -3,21 +3,27 @@ import { useEffect, useState } from 'react';
 import Hero from './components/Hero';
 import Navbar from './components/Navbar';
 import Carousel from './components/Carousel';
-import movies from './mock/movies.mock';
-import CONST from './data/constants';
+import Footer from './components/Footer';
 
+import CONST from './data/constants';
 import './App.css';
 
 function App() {
-  
   const { URL, APISTRING } = CONST;
-  const [movie, setMovie] = useState<any>(null);
-
+  const [mainMovie, setMainMovie] = useState<any>(null);
+  const [movies, setMovies] = useState<any>(null);
+  const [series, setSeries] = useState<any>(null);
+  
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`${URL}/discover/movie${APISTRING}&sort_by=popularity.desc`);
-      const data = await response.json();
-      setMovie(data.results[0])
+      const moviesResponse = await fetch(`${URL}/discover/movie${APISTRING}&sort_by=popularity.desc`);
+      const moviesData = await moviesResponse.json();
+      setMainMovie(moviesData.results[0]);
+      setMovies(moviesData.results);
+
+      const seriesResponse = await fetch(`${URL}/discover/tv${APISTRING}&sort_by=popularity.desc`);
+      const seriesData = await seriesResponse.json();
+      setSeries(seriesData.results);
     };
 
     fetchData();
@@ -25,9 +31,11 @@ function App() {
 
   return (
     <>
-      <Hero title={movie?.title} score={movie?.vote_average} image={movie?.backdrop_path}/>
+      <Hero title={mainMovie?.title} score={mainMovie?.vote_average} image={mainMovie?.backdrop_path}/>
       <Navbar />
-      <Carousel title='Filmes' data={movies}/>
+      <Carousel title='Filmes Populares' data={movies}/>
+      <Carousel title='Séries Populares' data={series}/>
+      <Footer />
     </>
   )
 }

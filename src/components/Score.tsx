@@ -1,7 +1,7 @@
 import './Score.css';
 
 interface scoreProps  {
-    value: number;
+    value?: number;
 }
 
 const Score = ({ value }: scoreProps) => {
