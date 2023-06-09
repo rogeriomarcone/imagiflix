@@ -56,7 +56,7 @@ const Carousel = ({ title, data }: CarouselProps) => {
             <Slider className="relative mb-8" {...settings}>
                 {data?.map((movie, index) => <Poster
                     title={movie.title}
-                    cover={getCover(movie?.backdrop_path ? movie?.backdrop_path : movie?.poster_path)}
+                    cover={getCover(movie?.poster_path)}
                     score={movie.vote_average}
                     name={movie.name}
                     key={index}
