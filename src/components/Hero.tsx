@@ -22,7 +22,7 @@ const Hero = ({ title, score, image }: heroProps) => {
                 <p className='text-3xl'>Assista agora:</p>
                 <h2 className='text-6xl font-bold'>{title}</h2>
 
-                <p className='text-base '>
+                <p className='text-base mt-5'>
                     Nota{' '}
                     <Score value={score} />
                 </p>
